@@ -85,7 +85,7 @@ describe("InvestmentToken Contract", async () => {
   });
 
   describe("Transfer", () => {
-    it("Should transfer when sender is the owner and receiver are not allow-listed account", async () => {
+    it("Should transfer when sender is the owner and receiver are not allowlisted account", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
 
       expect(await token.balanceOf(OWNER.address)).to.equal(
@@ -94,7 +94,7 @@ describe("InvestmentToken Contract", async () => {
       expect(await token.balanceOf(ADDR1.address)).to.equal(ONE_THOUSAND);
     });
 
-    it("Should transfer when sender and receiver are allow-listed account", async () => {
+    it("Should transfer when sender and receiver are allowlisted account", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
@@ -108,24 +108,24 @@ describe("InvestmentToken Contract", async () => {
       expect(await token.balanceOf(ADDR2.address)).to.equal(ONE_THOUSAND);
     });
 
-    it("Should transfer failed when sender are not allow-listed account", async () => {
+    it("Should transfer failed when sender are not allowlisted account", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
 
       await expect(
         token.connect(ADDR1).transfer(OWNER.address, ONE_THOUSAND)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
 
-    it("Should transfer failed when receiver are not allow-listed account", async () => {
+    it("Should transfer failed when receiver are not allowlisted account", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
       await registry.addAllowlist(ADDR1.address);
 
       await expect(
         token.connect(ADDR1).transfer(ADDR2.address, ONE_THOUSAND)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
 
-    it("Should transferFrom when owner and spender are allow-listed account", async () => {
+    it("Should transferFrom when owner and spender are allowlisted account", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
@@ -139,7 +139,7 @@ describe("InvestmentToken Contract", async () => {
       expect(await token.balanceOf(ADDR2.address)).to.equal(ONE_THOUSAND);
     });
 
-    it("Should transferFrom failed when owner are not allow-listed account", async () => {
+    it("Should transferFrom failed when owner are not allowlisted account", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
@@ -151,10 +151,10 @@ describe("InvestmentToken Contract", async () => {
         token
           .connect(ADDR2)
           .transferFrom(ADDR1.address, ADDR2.address, ONE_THOUSAND)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
 
-    it("Should transferFrom failed when spender are not allow-listed account", async () => {
+    it("Should transferFrom failed when spender are not allowlisted account", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
@@ -167,12 +167,12 @@ describe("InvestmentToken Contract", async () => {
         token
           .connect(ADDR2)
           .transferFrom(ADDR1.address, ADDR2.address, ONE_THOUSAND)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
   });
 
   describe("Allowance", () => {
-    it("Should approve when owner and spender are allow-listed account", async () => {
+    it("Should approve when owner and spender are allowlisted account", async () => {
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
 
@@ -183,27 +183,27 @@ describe("InvestmentToken Contract", async () => {
       );
     });
 
-    it("Should approve failed when owner are not allow-listed account", async () => {
+    it("Should approve failed when owner are not allowlisted account", async () => {
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
 
       await registry.removeAllowlist(ADDR1.address);
       await expect(
         token.connect(ADDR1).approve(ADDR2.address, ONE_THOUSAND)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
 
-    it("Should approve failed when spender are not allow-listed account", async () => {
+    it("Should approve failed when spender are not allowlisted account", async () => {
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
 
       await registry.removeAllowlist(ADDR2.address);
       await expect(
         token.connect(ADDR1).approve(ADDR2.address, ONE_THOUSAND)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
 
-    it("Should increaseAllowance owner and spender are allow-listed account", async () => {
+    it("Should increaseAllowance owner and spender are allowlisted account", async () => {
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
 
@@ -215,27 +215,27 @@ describe("InvestmentToken Contract", async () => {
       );
     });
 
-    it("Should increaseAllowance failed when owner are not allow-listed account", async () => {
+    it("Should increaseAllowance failed when owner are not allowlisted account", async () => {
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
 
       await registry.removeAllowlist(ADDR1.address);
       await expect(
         token.connect(ADDR1).increaseAllowance(ADDR2.address, ONE_THOUSAND)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
 
-    it("Should increaseAllowance failed when spender are not allow-listed account", async () => {
+    it("Should increaseAllowance failed when spender are not allowlisted account", async () => {
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
 
       await registry.removeAllowlist(ADDR2.address);
       await expect(
         token.connect(ADDR1).increaseAllowance(ADDR2.address, ONE_THOUSAND)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
 
-    it("Should decreaseAllowance owner and spender are allow-listed account", async () => {
+    it("Should decreaseAllowance owner and spender are allowlisted account", async () => {
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
 
@@ -249,24 +249,24 @@ describe("InvestmentToken Contract", async () => {
       );
     });
 
-    it("Should decreaseAllowance failed when owner are not allow-listed account", async () => {
+    it("Should decreaseAllowance failed when owner are not allowlisted account", async () => {
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
 
       await registry.removeAllowlist(ADDR1.address);
       await expect(
         token.connect(ADDR1).decreaseAllowance(ADDR2.address, ONE_THOUSAND)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
 
-    it("Should decreaseAllowance failed when spender are not allow-listed account", async () => {
+    it("Should decreaseAllowance failed when spender are not allowlisted account", async () => {
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
 
       await registry.removeAllowlist(ADDR2.address);
       await expect(
         token.connect(ADDR1).decreaseAllowance(ADDR2.address, ONE_THOUSAND)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
   });
 
@@ -281,7 +281,7 @@ describe("InvestmentToken Contract", async () => {
       expect(await token.balanceOf(OWNER.address)).to.equal(0);
     });
 
-    it("Should burn tokens on allow-listed account", async () => {
+    it("Should burn tokens on allowlisted account", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
       await registry.addAllowlist(ADDR1.address);
 
@@ -290,11 +290,11 @@ describe("InvestmentToken Contract", async () => {
       expect(await token.balanceOf(ADDR1.address)).to.equal(0);
     });
 
-    it("Should burn tokens failed when account are not allow-listed", async () => {
+    it("Should burn tokens failed when account are not allowlisted", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
 
       await expect(token.connect(ADDR1).burn(ONE_THOUSAND)).to.be.revertedWith(
-        "InvestmentToken: account are not allow-listed"
+        "InvestmentToken: account are not allowlisted"
       );
     });
 
@@ -329,7 +329,7 @@ describe("InvestmentToken Contract", async () => {
       ).to.be.revertedWith("ERC20: insufficient allowance");
     });
 
-    it("Should burnFrom failed when spender are not allow-listed account", async () => {
+    it("Should burnFrom failed when spender are not allowlisted account", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
@@ -340,10 +340,10 @@ describe("InvestmentToken Contract", async () => {
 
       await expect(
         token.connect(ADDR2).burnFrom(ADDR1.address, ONE_MILLION)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
 
-    it("Should burnFrom failed when owner are not allow-listed account", async () => {
+    it("Should burnFrom failed when owner are not allowlisted account", async () => {
       await token.transfer(ADDR1.address, ONE_THOUSAND);
       await registry.addAllowlist(ADDR1.address);
       await registry.addAllowlist(ADDR2.address);
@@ -354,7 +354,7 @@ describe("InvestmentToken Contract", async () => {
 
       await expect(
         token.connect(ADDR2).burnFrom(ADDR1.address, ONE_MILLION)
-      ).to.be.revertedWith("InvestmentToken: account are not allow-listed");
+      ).to.be.revertedWith("InvestmentToken: account are not allowlisted");
     });
   });
 

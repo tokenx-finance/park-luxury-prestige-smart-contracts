@@ -28,13 +28,13 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
     }
 
     /**
-     * @dev Throws if sender or receiver are not allow-listed account.
+     * @dev Throws if sender or receiver are not allowlisted account.
      */
     modifier onlyAllowlist(address sender, address receiver) {
         address _msgSender = _msgSender();
         if (_msgSender != owner()) {
             bool _isAllowlist = isAllowlist(sender) && isAllowlist(receiver) && isAllowlist(_msgSender);
-            require(_isAllowlist, "InvestmentToken: account are not allow-listed");
+            require(_isAllowlist, "InvestmentToken: account are not allowlisted");
         }
         _;
     }
@@ -57,7 +57,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      *
      * - `to` cannot be the zero address.
      * - the caller must have a balance of at least `amount`.
-     * - the caller and `to` must be allow-listed account.
+     * - the caller and `to` must be allowlisted account.
      * - The contract must not be paused.
      */
     function transfer(address to, uint256 amount) public virtual override onlyAllowlist(msg.sender, to) whenNotPaused returns (bool) {
@@ -73,7 +73,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      * Requirements:
      *
      * - `spender` cannot be the zero address.
-     * - the caller and `spender` must be allow-listed account.
+     * - the caller and `spender` must be allowlisted account.
      * - The contract must not be paused.
      */
     function approve(address spender, uint256 amount) public virtual override onlyAllowlist(msg.sender, spender) whenNotPaused returns (bool) {
@@ -95,7 +95,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      * - `from` must have a balance of at least `amount`.
      * - the caller must have allowance for ``from``'s tokens of at least
      * `amount`.
-     * - the caller and `spender` must be allow-listed account.
+     * - the caller and `spender` must be allowlisted account.
      * - The contract must not be paused.
      */
     function transferFrom(address from, address to, uint256 amount) public virtual override onlyAllowlist(from, to) whenNotPaused returns (bool) {
@@ -113,7 +113,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      * Requirements:
      *
      * - `spender` cannot be the zero address.
-     * - the caller and `spender` must be allow-listed account.
+     * - the caller and `spender` must be allowlisted account.
      * - The contract must not be paused.
      */
     function increaseAllowance(address spender, uint256 addedValue) public virtual override onlyAllowlist(msg.sender, spender) whenNotPaused returns (bool) {
@@ -133,7 +133,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      * - `spender` cannot be the zero address.
      * - `spender` must have allowance for the caller of at least
      * `subtractedValue`.
-     * - the caller and `spender` must be allow-listed account.
+     * - the caller and `spender` must be allowlisted account.
      * - The contract must not be paused.
      */
     function decreaseAllowance(address spender, uint256 subtractedValue) public virtual override onlyAllowlist(msg.sender, spender) whenNotPaused returns (bool) {
@@ -147,7 +147,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      *
      * Requirements:
      *
-     * - the caller must be allow-listed account.
+     * - the caller must be allowlisted account.
      * - The contract must not be paused.
      */
     function burn(uint256 amount) public virtual override onlyAllowlist(msg.sender, msg.sender) whenNotPaused {
@@ -164,7 +164,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      *
      * - the caller must have allowance for ``accounts``'s tokens of at least
      * `amount`.
-     * - the caller and `account` must be allow-listed account.
+     * - the caller and `account` must be allowlisted account.
      * - The contract must not be paused.
      */
     function burnFrom(address account, uint256 amount) public virtual override onlyAllowlist(msg.sender, account) whenNotPaused {
@@ -179,7 +179,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      * - `from` cannot be the zero address.
      * - `from` must have a balance of at least `amount`.
      * - `to` cannot be the zero address.
-     * - `to` must be allow-listed account.
+     * - `to` must be allowlisted account.
      * - the caller must be owner.
      * - The contract must not be paused.
      */

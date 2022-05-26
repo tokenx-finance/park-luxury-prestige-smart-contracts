@@ -16,12 +16,12 @@ contract AllowlistRegistry is Ownable {
     /**
      * @dev Emitted when new account has added to allowlist.
      */
-    event AddedAllowlist(address account);
+    event AddedAllowlist(address indexed account);
 
     /**
      * @dev Emitted when an account has removed from allowlist.
      */
-    event RemovedAllowlist(address account);
+    event RemovedAllowlist(address indexed account);
 
     /**
      * @dev Returns the allowlist status of an account.

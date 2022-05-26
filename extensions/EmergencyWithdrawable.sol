@@ -17,12 +17,12 @@ abstract contract EmergencyWithdrawable {
     /**
      * @dev Emitted when emergeny withdraw ether has called.
      */
-    event EmergencyWithdrawEther(address beneficiary, uint256 amount);
+    event EmergencyWithdrawEther(address indexed beneficiary, uint256 amount);
 
     /**
      * @dev Emitted when emergeny withdraw token has called.
      */
-    event EmergencyWithdrawToken(address token, address beneficiary, uint256 amount);
+    event EmergencyWithdrawToken(address indexed token, address indexed beneficiary, uint256 amount);
 
     /**
      * @dev Withdraw ether from (this) contract to `beneficiary`.
