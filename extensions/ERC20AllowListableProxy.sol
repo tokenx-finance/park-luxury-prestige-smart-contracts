@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Unlicense
-// TokenX Contracts v1.0.0 (extensions/ERC20AllowListableProxy.sol)
-pragma solidity ^0.8.0;
+// TokenX Contracts v1.0.1 (extensions/ERC20AllowListableProxy.sol)
+pragma solidity 0.8.14;
 
 import "../contracts/AllowlistRegistry.sol";
 
@@ -13,12 +13,15 @@ import "../contracts/AllowlistRegistry.sol";
 abstract contract ERC20AllowListableProxy {
     address private _registry;
 
+    /**
+     * @dev Emitted when allowlist registry address has changed.
+     */
     event AllowlistRegistryChanged(address indexed previousRegistry, address indexed newRegistry);
 
     /**
      * @dev Returns the allowlist registry contract address.
      */
-    function allowlistRegistry() public view returns (address) {
+    function allowlistRegistry() external view returns (address) {
         return _registry;
     }
 

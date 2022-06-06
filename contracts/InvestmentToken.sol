@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Unlicense
-// TokenX Contracts v1.0.0 (contracts/InvestmentToken.sol)
-pragma solidity ^0.8.0;
+// TokenX Contracts v1.0.1 (contracts/InvestmentToken.sol)
+pragma solidity 0.8.14;
 
 import "../extensions/ERC20AllowListableProxy.sol";
 import "../extensions/EmergencyWithdrawable.sol";
@@ -13,10 +13,11 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
  *
  *  - Preminted initial supply
  *  - Ability for holders to burn (destroy) their tokens
- *  - The owner is allowed for token minting (creation).
+ *  - The owner is allowed to stop all token transfers.
  *  - The owner is allowed to add a specific address to allowlist for transfer and receive token.
  *
  * This contract uses {Ownable} to include access control capabilities.
+ * This contract uses {Pausable} to include pause capabilities.
  * This contract uses {ERC20Burnable} to include burn capabilities.
  * This contract uses {ERC20AllowListableProxy} to include transfer and receive control capabilities.
  * This contract uses {EmergencyWithdrawable} to include emergency withdraw capabilities.
@@ -46,7 +47,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      *
      * - the caller must be owner.
      */
-    function setAllowlistRegistry(address allowlistRegistry) public virtual onlyOwner {
+    function setAllowlistRegistry(address allowlistRegistry) external virtual onlyOwner {
         _setAllowlistRegistry(allowlistRegistry);
     }
 
@@ -183,7 +184,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      * - the caller must be owner.
      * - The contract must not be paused.
      */
-    function adminTransfer(address from, address to, uint256 amount) public virtual onlyOwner {
+    function adminTransfer(address from, address to, uint256 amount) external virtual onlyOwner {
         _transfer(from, to, amount);
     }
 
@@ -196,7 +197,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      * - `account` must have a balance of at least `amount`.
      * - the caller must be owner.
      */
-     function adminBurn(address account, uint256 amount) public virtual onlyOwner {
+     function adminBurn(address account, uint256 amount) external virtual onlyOwner {
          _burn(account, amount);
      }
 
@@ -209,7 +210,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      *
      * - the caller must be owner.
      */
-    function pause() public onlyOwner {
+    function pause() external onlyOwner {
         _pause();
     }
 
@@ -222,7 +223,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      *
      * - the caller must be owner.
      */
-    function unpause() public onlyOwner {
+    function unpause() external onlyOwner {
         _unpause();
     }
 
@@ -235,7 +236,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      *
      * - the caller must be owner.
      */
-    function emergencyWithdrawToken(address token) public onlyOwner {
+    function emergencyWithdrawToken(address token) external onlyOwner {
         _emergencyWithdrawToken(owner(), token);
     }
 }

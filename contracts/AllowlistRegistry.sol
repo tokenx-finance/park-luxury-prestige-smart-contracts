@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Unlicense
-// TokenX Contracts v1.0.0 (extensions/AllowlistRegistry.sol)
-pragma solidity ^0.8.0;
+// TokenX Contracts v1.0.1 (extensions/AllowlistRegistry.sol)
+pragma solidity 0.8.14;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -26,7 +26,7 @@ contract AllowlistRegistry is Ownable {
     /**
      * @dev Returns the allowlist status of an account.
      */
-    function isAllowlist(address account) public view virtual returns (bool) {
+    function isAllowlist(address account) external view virtual returns (bool) {
         return _allowlist[account];
     }
 
@@ -37,7 +37,7 @@ contract AllowlistRegistry is Ownable {
      *
      * - the caller must be owner.
      */
-    function addAllowlist(address account) public virtual onlyOwner {
+    function addAllowlist(address account) external virtual onlyOwner {
         _allowlist[account] = true;
 
         emit AddedAllowlist(account);
@@ -50,7 +50,7 @@ contract AllowlistRegistry is Ownable {
      *
      * - the caller must be owner.
      */
-    function removeAllowlist(address account) public virtual onlyOwner {
+    function removeAllowlist(address account) external virtual onlyOwner {
         _allowlist[account] = false;
 
         emit RemovedAllowlist(account);
