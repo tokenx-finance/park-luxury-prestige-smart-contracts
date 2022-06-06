@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: Unlicense
-// TokenX Contracts v1.0.0 (contracts/InvestmentToken.sol)
-pragma solidity ^0.8.0;
+// TokenX Contracts v1.0.1 (contracts/InvestmentToken.sol)
+pragma solidity 0.8.14;
 
 import "../extensions/ERC20AllowListableProxy.sol";
 import "../extensions/EmergencyWithdrawable.sol";
