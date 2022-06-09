@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: Unlicense
+// SPDX-License-Identifier: GPL-2.0-or-later
 // TokenX Contracts v1.0.1 (extensions/AllowlistRegistry.sol)
 pragma solidity 0.8.14;
 
