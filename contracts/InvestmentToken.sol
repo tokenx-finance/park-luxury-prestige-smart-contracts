@@ -11,8 +11,8 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 /**
  * @dev {ERC20} token, including:
  *
- *  - Preminted initial supply
- *  - Ability for holders to burn (destroy) their tokens
+ *  - Preminted initial supply.
+ *  - Ability for holders to burn (destroy) their tokens.
  *  - The owner is allowed to stop all token transfers.
  *  - The owner is allowed to add a specific address to allowlist for transfer and receive token.
  *
@@ -163,7 +163,7 @@ contract InvestmentToken is Ownable, Pausable, ERC20Burnable, ERC20AllowListable
      *
      * Requirements:
      *
-     * - the caller must have allowance for ``accounts``'s tokens of at least
+     * - the caller must have allowance for `accounts`'s tokens of at least
      * `amount`.
      * - the caller and `account` must be allowlisted account.
      * - The contract must not be paused.

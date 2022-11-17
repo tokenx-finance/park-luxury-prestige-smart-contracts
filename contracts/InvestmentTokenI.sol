@@ -11,8 +11,8 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 /**
  * @dev {ERC20} token, including:
  *
- *  - Manual minting initial supply
- *  - Ability for holders to burn (destroy) their tokens
+ *  - Manual minting initial supply.
+ *  - Ability for holders to burn (destroy) their tokens.
  *  - The owner is allowed to stop all token transfers.
  *  - The owner is allowed to add a specific address to allowlist for transfer and receive token.
  *
