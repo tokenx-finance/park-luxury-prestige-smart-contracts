@@ -60,7 +60,7 @@ contract InvestmentTokenM is Ownable, Pausable, ERC20Burnable, ERC20Mintable, ER
      * - the caller must be owner.
      * - `_mintable` must not be renounced.
      */
-    function mint(uint256 amount) public virtual onlyOwner whenMintable {
+    function mint(uint256 amount) external virtual onlyOwner whenMintable {
         _mint(msg.sender, amount);
     }
 
@@ -78,7 +78,7 @@ contract InvestmentTokenM is Ownable, Pausable, ERC20Burnable, ERC20Mintable, ER
      * - the caller must be owner.
      * - `_mintable` must not be renounced.
      */
-    function renounceMintable() public virtual onlyOwner whenMintable {
+    function renounceMintable() external virtual onlyOwner whenMintable {
         _renounceMintable();
     }
 
