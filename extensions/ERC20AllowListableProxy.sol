@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-// TokenX Contracts v1.0.1 (extensions/ERC20AllowListableProxy.sol)
-pragma solidity 0.8.14;
+// TokenX Contracts v1.0.2 (extensions/ERC20AllowListableProxy.sol)
+pragma solidity 0.8.17;
 
 import "../contracts/AllowlistRegistry.sol";
 

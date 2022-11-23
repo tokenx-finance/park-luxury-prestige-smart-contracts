@@ -24,23 +24,17 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.14",
+    version: "0.8.17",
     settings: {
       optimizer: {
         enabled: true,
-        runs: 1000,
+        runs: 10000,
       },
     },
   },
   networks: {
     rinkeby: {
       url: process.env.RINKEBY_URL || "",
-      accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
-    },
-    kiln: {
-      url: "https://rpc.kiln.themerge.dev",
-      chainId: 1337802,
       accounts:
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
     },
