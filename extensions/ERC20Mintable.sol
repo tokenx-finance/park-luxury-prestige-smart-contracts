@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-// TokenX Contracts v1.0.0 (extensions/ERC20Mintable.sol)
-pragma solidity 0.8.14;
+// TokenX Contracts v1.0.1 (extensions/ERC20Mintable.sol)
+pragma solidity 0.8.17;
 
 /**
  * @dev Contract module which allows children to implement an mintable control
